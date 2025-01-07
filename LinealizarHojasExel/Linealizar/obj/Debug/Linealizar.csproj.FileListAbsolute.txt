@@ -1,0 +1,20 @@
+c:\users\yarcia\documents\visual studio 2017\Projects\LinealizarHojasExel\Linealizar\bin\Debug\Linealizar.dll
+c:\users\yarcia\documents\visual studio 2017\Projects\LinealizarHojasExel\Linealizar\bin\Debug\Linealizar.pdb
+c:\users\yarcia\documents\visual studio 2017\Projects\LinealizarHojasExel\Linealizar\obj\Debug\Linealizar.dll
+c:\users\yarcia\documents\visual studio 2017\Projects\LinealizarHojasExel\Linealizar\obj\Debug\Linealizar.pdb
+c:\users\yarcia\documents\visual studio 2017\Projects\LinealizarHojasExel\Linealizar\obj\Debug\Linealizar.csprojResolveAssemblyReference.cache
+D:\LinealizarHojasExel\Linealizar\bin\Debug\Linealizar.dll
+D:\LinealizarHojasExel\Linealizar\bin\Debug\Linealizar.pdb
+D:\LinealizarHojasExel\Linealizar\obj\Debug\Linealizar.csprojResolveAssemblyReference.cache
+D:\LinealizarHojasExel\Linealizar\obj\Debug\Linealizar.dll
+D:\LinealizarHojasExel\Linealizar\obj\Debug\Linealizar.pdb
+C:\Users\yarcia\Documents\Visual Studio 2017\LinealizarHojasExel\Linealizar\bin\Debug\Linealizar.dll
+C:\Users\yarcia\Documents\Visual Studio 2017\LinealizarHojasExel\Linealizar\bin\Debug\Linealizar.pdb
+C:\Users\yarcia\Documents\Visual Studio 2017\LinealizarHojasExel\Linealizar\obj\Debug\Linealizar.csprojResolveAssemblyReference.cache
+C:\Users\yarcia\Documents\Visual Studio 2017\LinealizarHojasExel\Linealizar\obj\Debug\Linealizar.dll
+C:\Users\yarcia\Documents\Visual Studio 2017\LinealizarHojasExel\Linealizar\obj\Debug\Linealizar.pdb
+C:\Users\yarcia\Desktop\LinealizarHojasExel\Linealizar\bin\Debug\Linealizar.dll
+C:\Users\yarcia\Desktop\LinealizarHojasExel\Linealizar\bin\Debug\Linealizar.pdb
+C:\Users\yarcia\Desktop\LinealizarHojasExel\Linealizar\obj\Debug\Linealizar.dll
+C:\Users\yarcia\Desktop\LinealizarHojasExel\Linealizar\obj\Debug\Linealizar.pdb
+C:\Users\yarcia\Desktop\LinealizarHojasExel\Linealizar\obj\Debug\Linealizar.csprojResolveAssemblyReference.cache

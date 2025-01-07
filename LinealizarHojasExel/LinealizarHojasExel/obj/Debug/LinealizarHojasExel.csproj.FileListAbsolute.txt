@@ -1,0 +1,48 @@
+c:\users\yarcia\documents\visual studio 2017\Projects\LinealizarHojasExel\LinealizarHojasExel\bin\Debug\LinealizarHojasExel.exe.config
+c:\users\yarcia\documents\visual studio 2017\Projects\LinealizarHojasExel\LinealizarHojasExel\bin\Debug\LinealizarHojasExel.exe
+c:\users\yarcia\documents\visual studio 2017\Projects\LinealizarHojasExel\LinealizarHojasExel\bin\Debug\LinealizarHojasExel.pdb
+c:\users\yarcia\documents\visual studio 2017\Projects\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.csprojResolveAssemblyReference.cache
+c:\users\yarcia\documents\visual studio 2017\Projects\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.Form1.resources
+c:\users\yarcia\documents\visual studio 2017\Projects\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.Properties.Resources.resources
+c:\users\yarcia\documents\visual studio 2017\Projects\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.csproj.GenerateResource.Cache
+c:\users\yarcia\documents\visual studio 2017\Projects\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.exe
+c:\users\yarcia\documents\visual studio 2017\Projects\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.pdb
+c:\users\yarcia\documents\visual studio 2017\Projects\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.SecondForm.resources
+C:\Users\yarcia\Documents\Visual Studio 2017\Projects\LinealizarHojasExel\LinealizarHojasExel\bin\Debug\Linealizar.dll
+C:\Users\yarcia\Documents\Visual Studio 2017\Projects\LinealizarHojasExel\LinealizarHojasExel\bin\Debug\Linealizar.pdb
+D:\LinealizarHojasExel\LinealizarHojasExel\bin\Debug\LinealizarHojasExel.exe.config
+D:\LinealizarHojasExel\LinealizarHojasExel\bin\Debug\LinealizarHojasExel.exe
+D:\LinealizarHojasExel\LinealizarHojasExel\bin\Debug\LinealizarHojasExel.pdb
+D:\LinealizarHojasExel\LinealizarHojasExel\bin\Debug\Linealizar.dll
+D:\LinealizarHojasExel\LinealizarHojasExel\bin\Debug\Linealizar.pdb
+D:\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.csprojResolveAssemblyReference.cache
+D:\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.Form1.resources
+D:\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.Properties.Resources.resources
+D:\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.SecondForm.resources
+D:\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.csproj.GenerateResource.Cache
+D:\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.exe
+D:\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.pdb
+C:\Users\yarcia\Documents\Visual Studio 2017\LinealizarHojasExel\LinealizarHojasExel\bin\Debug\LinealizarHojasExel.exe.config
+C:\Users\yarcia\Documents\Visual Studio 2017\LinealizarHojasExel\LinealizarHojasExel\bin\Debug\LinealizarHojasExel.exe
+C:\Users\yarcia\Documents\Visual Studio 2017\LinealizarHojasExel\LinealizarHojasExel\bin\Debug\LinealizarHojasExel.pdb
+C:\Users\yarcia\Documents\Visual Studio 2017\LinealizarHojasExel\LinealizarHojasExel\bin\Debug\Linealizar.dll
+C:\Users\yarcia\Documents\Visual Studio 2017\LinealizarHojasExel\LinealizarHojasExel\bin\Debug\Linealizar.pdb
+C:\Users\yarcia\Documents\Visual Studio 2017\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.csprojResolveAssemblyReference.cache
+C:\Users\yarcia\Documents\Visual Studio 2017\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.Form1.resources
+C:\Users\yarcia\Documents\Visual Studio 2017\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.Properties.Resources.resources
+C:\Users\yarcia\Documents\Visual Studio 2017\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.SecondForm.resources
+C:\Users\yarcia\Documents\Visual Studio 2017\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.csproj.GenerateResource.Cache
+C:\Users\yarcia\Documents\Visual Studio 2017\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.exe
+C:\Users\yarcia\Documents\Visual Studio 2017\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.pdb
+C:\Users\yarcia\Desktop\LinealizarHojasExel\LinealizarHojasExel\bin\Debug\LinealizarHojasExel.exe.config
+C:\Users\yarcia\Desktop\LinealizarHojasExel\LinealizarHojasExel\bin\Debug\LinealizarHojasExel.exe
+C:\Users\yarcia\Desktop\LinealizarHojasExel\LinealizarHojasExel\bin\Debug\LinealizarHojasExel.pdb
+C:\Users\yarcia\Desktop\LinealizarHojasExel\LinealizarHojasExel\bin\Debug\Linealizar.dll
+C:\Users\yarcia\Desktop\LinealizarHojasExel\LinealizarHojasExel\bin\Debug\Linealizar.pdb
+C:\Users\yarcia\Desktop\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.csprojResolveAssemblyReference.cache
+C:\Users\yarcia\Desktop\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.Form1.resources
+C:\Users\yarcia\Desktop\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.Properties.Resources.resources
+C:\Users\yarcia\Desktop\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.SecondForm.resources
+C:\Users\yarcia\Desktop\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.csproj.GenerateResource.Cache
+C:\Users\yarcia\Desktop\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.exe
+C:\Users\yarcia\Desktop\LinealizarHojasExel\LinealizarHojasExel\obj\Debug\LinealizarHojasExel.pdb
