@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinealizarHojasExel", "LinealizarHojasExel\LinealizarHojasExel.csproj", "{0B4F2189-37BE-4060-89EA-041243A4578B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linealizar", "Linealizar\Linealizar.csproj", "{1E98E089-011D-4495-BFE3-C24E1F9A345C}"
-EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Matrices linearize", "Matrices linearize\Matrices linearize.vdproj", "{15CCAEB6-0D99-4081-8038-4F1AFD500437}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,8 +21,6 @@ Global
 		{1E98E089-011D-4495-BFE3-C24E1F9A345C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E98E089-011D-4495-BFE3-C24E1F9A345C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E98E089-011D-4495-BFE3-C24E1F9A345C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{15CCAEB6-0D99-4081-8038-4F1AFD500437}.Debug|Any CPU.ActiveCfg = Debug
-		{15CCAEB6-0D99-4081-8038-4F1AFD500437}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

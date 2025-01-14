@@ -1,30 +1,32 @@
-﻿using System;
-using System.Collections;
+﻿using ExcelDataReader;
+using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.IO;
-using System.Runtime.InteropServices;
-using Excel = Microsoft.Office.Interop.Excel;
+using System.Runtime.InteropServices.ComTypes;
+using System.Runtime.Remoting.Messaging;
 
 
 namespace Linealizar
 {
     public class ReadExecDoc
     {
-        Excel.Application xlApp;
-        Excel.Workbook xlWorkbook;
         string _inputPath;
         string _directoryOutput;
         string _fulldirectionOutput;
         string _fileName;
-        List<string> _sheet;
+
+        // It seems that so far we have been working with square matrices
+        // TODO: We can add support for non square matrices.
         public int RowCount { get; set; }
         public int ColCount { get; set; }
         public decimal Percent
         {
             get; private set;
         }
+
 
         public ReadExecDoc(string Inpuntpath, string directoryOutput, string fileOutputName, int dimension = 50)
         {
@@ -34,35 +36,38 @@ namespace Linealizar
             _fileName = ClearFileName(fileOutputName);
             _fulldirectionOutput = ClearDirectoryPath(_directoryOutput, _fileName);
 
-            RowCount = dimension;
-            ColCount = dimension;
-
-            xlApp = new Excel.Application();
-            //  string fullPath = _directoryOutput + "\\" + _fileName;
-            xlWorkbook = xlApp.Workbooks.Open(_inputPath);
-
-            _sheet = new List<string>(xlWorkbook.Sheets.Count);
-            foreach (Excel._Worksheet sheet in xlWorkbook.Sheets)
-            {
-                _sheet.Add(sheet.Name);
-            }
-
-            Percent = RowCount * ColCount * _sheet.Count;
+            RowCount = ColCount = dimension;
         }
 
         public IEnumerable<decimal> Numbers()
         {
-            #region Creation of table 
-
-            foreach (var percent in CreateDBFile(_fileName, _sheet))
+            using (var stream = File.Open(_inputPath, FileMode.Open, FileAccess.Read)) 
             {
-                yield return percent;
+                List<string> sheetNames = new List<string>();
+
+
+                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                {
+                    Percent = RowCount * RowCount * reader.ResultsCount;
+
+                    do
+                    {
+                        sheetNames.Add(reader.Name);
+
+                        #region Creation of table 
+
+                        foreach (var percent in CreateDBFile(_fileName, sheetNames, reader))
+                        {
+                            yield return percent;
+                        }
+                        #endregion
+                    } while (reader.NextResult()); 
+                }
             }
-            #endregion
         }
 
 
-        private IEnumerable<decimal> CreateDBFile(string fileName, IEnumerable<string> fieldsName)
+        private IEnumerable<decimal> CreateDBFile(string fileName,IEnumerable<string> fieldsName, IExcelDataReader reader)
         {
 
             //File output of this proyect finished in ML.
@@ -95,18 +100,14 @@ namespace Linealizar
                 {
                     List<double> toInsert = new List<double>();
 
-                    foreach (var sheet in xlWorkbook.Sheets)
+                    foreach (var sheet in _package.Workbook.Worksheets)
                     {
-                        Excel._Worksheet xlWorksheet = (Excel._Worksheet)sheet;
-                        Excel.Range xlRange = xlWorksheet.UsedRange;
-
-                        if (xlRange.Cells[j, k] != null && xlRange.Cells[j, k].Value2 != null)
+                        if (sheet.Cells[j, k] != null && sheet.Cells[j, k].Text != null)
                         {
-                            toInsert.Add(double.Parse(xlRange.Cells[j, k].Value2.ToString()));
+                            toInsert.Add(double.Parse(sheet.Cells[j, k].Text.ToString()));
                         }
                         else
                         {
-                            //here print in log that this value was fill.
                             toInsert.Add(0);
                         }
                         yield return count++;
@@ -179,32 +180,10 @@ namespace Linealizar
 
         public void CloseDocucument()
         {
-            //cleanup
             GC.Collect();
             GC.WaitForPendingFinalizers();
 
-            //rule of thumb for releasing com objects:
-            //  never use two dots, all COM objects must be referenced and released individually
-            //  ex: [somthing].[something].[something] is bad
-
-            //release com objects to fully kill excel process from running in the background
-
-            foreach (var sheet in xlWorkbook.Sheets)
-            {
-                Excel._Worksheet xlWorksheet = (Excel._Worksheet)sheet;
-                Excel.Range xlRange = xlWorksheet.UsedRange;
-
-                Marshal.ReleaseComObject(xlRange);
-                Marshal.ReleaseComObject(xlWorksheet);
-            }
-
-            //close and release
-            xlWorkbook.Close();
-            Marshal.ReleaseComObject(xlWorkbook);
-
-            //quit and release
-            xlApp.Quit();
-            Marshal.ReleaseComObject(xlApp);
+            _package.Dispose();
         }
 
         private string ClearDirectoryPath(string directory, string fileName)
