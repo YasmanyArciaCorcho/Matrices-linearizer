@@ -43,3 +43,6 @@ C:\Work\retrospectiva\yasmany\retrospectiva-project\LinealizarHojasExel\Linealiz
 C:\Work\retrospectiva\yasmany\retrospectiva-project\LinealizarHojasExel\Linealizar\bin\Debug\System.Numerics.Vectors.xml
 C:\Work\retrospectiva\yasmany\retrospectiva-project\LinealizarHojasExel\Linealizar\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Work\retrospectiva\yasmany\retrospectiva-project\LinealizarHojasExel\Linealizar\obj\Debug\Linealizar.csproj.Up2Date
+C:\Work\retrospectiva\yasmany\retrospectiva-project\LinealizarHojasExel\Linealizar\bin\Debug\ExcelDataReader.dll
+C:\Work\retrospectiva\yasmany\retrospectiva-project\LinealizarHojasExel\Linealizar\bin\Debug\ExcelDataReader.pdb
+C:\Work\retrospectiva\yasmany\retrospectiva-project\LinealizarHojasExel\Linealizar\bin\Debug\ExcelDataReader.xml

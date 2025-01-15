@@ -61,10 +61,10 @@ namespace LinealizarHojasExel
             ReadExecDoc linealizar;
             linealizar = new ReadExecDoc(inFilePath, fulloutpath, fileOutName, dimension);
             progressBar1.Maximum = (int)linealizar.Percent/100;
-            foreach (var percent in linealizar.Numbers())
-            {
-                progressBar1.Value = (int)percent / 100;
-            }
+            //foreach (var percent in linealizar.Numbers())
+            //{
+            //    progressBar1.Value = (int)percent / 100;
+            //}
 
             linealizar.CloseDocucument();
         }

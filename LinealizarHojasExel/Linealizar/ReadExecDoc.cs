@@ -131,6 +131,10 @@ namespace Linealizar
                             {
                                 cmd.CommandText = InsertSheetsQuery(rowsSheet);
                                 cmd.ExecuteNonQuery();
+
+                                _totalSheetsProcessed += rowsSheet.Count;
+                                
+                                rowsSheet.Clear();
                             }
 
                         } while (reader.NextResult());
