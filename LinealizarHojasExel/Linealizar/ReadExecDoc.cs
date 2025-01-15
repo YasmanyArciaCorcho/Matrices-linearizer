@@ -62,60 +62,86 @@ namespace Linealizar
 
                 _sheetNames = new List<string>();
                 // Create the db shema
-                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                try
                 {
-                    string createSql = "create table " + _fulldirectionOutput + " (";
-                    do
+                    using (var reader = ExcelReaderFactory.CreateReader(stream))
                     {
-                        createSql = createSql + "[" + reader.Name + "]" + " " + "Double " + ",";
-
-                        _sheetNames.Add(reader.Name);
-                    }
-                    while (reader.NextResult());
-                    
-                    createSql = createSql.Substring(0, createSql.Length - 1) + ");";
-
-                    cmd.CommandText = createSql;
-                    cmd.ExecuteNonQuery();
-                }
-
-                // Insert data on each table
-                // A sheet turns into a column as how the linearizing process defines
-                using (var reader = ExcelReaderFactory.CreateReader(stream))
-                {
-                    Percent = RowCount * RowCount * reader.ResultsCount;
-                    List<List<double>> rowsSheet = new List<List<double>>();
-
-                    do
-                    {
-                        List<double> row = new List<double>();
-                        while (reader.Read())
+                        try
                         {
-                            for (int col = 0; col < reader.FieldCount; col++)
+                            string createSql = "create table " + _fulldirectionOutput + " (";
+                            do
                             {
-                                object cellValue = reader.GetValue(col);
-                                if (cellValue is double)
-                                {
-                                    row.Add((double)cellValue);
-                                }
-                                else
-                                {
-                                    row.Add(0);
-                                }
+                                createSql = createSql + "[" + reader.Name + "]" + " " + "Double " + ",";
+
+                                _sheetNames.Add(reader.Name);
                             }
-                        };
+                            while (reader.NextResult());
 
-                        rowsSheet.Add(row);
+                            createSql = createSql.Substring(0, createSql.Length - 1) + ");";
 
-                        if (rowsSheet.Count >= _maxSheetsToProcess)
-                        {
-                            cmd.CommandText = InsertSheetsQuery(rowsSheet);
+                            cmd.CommandText = createSql;
                             cmd.ExecuteNonQuery();
                         }
+                        catch (Exception)
+                        {
+                            // Add error logging
+                            // Error when the matrices are being linearized
+                        }
 
-                    } while (reader.NextResult());
+                    }
+                }
+                catch (Exception)
+                {
+                    // Add error logging
+                    // Error reading the Excel file
                 }
 
+                try
+                {
+
+                    // Insert data on each table
+                    // A sheet turns into a column as how the linearizing process defines
+                    using (var reader = ExcelReaderFactory.CreateReader(stream))
+                    {
+                        Percent = RowCount * RowCount * reader.ResultsCount;
+                        List<List<double>> rowsSheet = new List<List<double>>();
+
+                        do
+                        {
+                            List<double> row = new List<double>();
+                            while (reader.Read())
+                            {
+                                for (int col = 0; col < reader.FieldCount; col++)
+                                {
+                                    object cellValue = reader.GetValue(col);
+                                    if (cellValue is double)
+                                    {
+                                        row.Add((double)cellValue);
+                                    }
+                                    else
+                                    {
+                                        row.Add(0);
+                                    }
+                                }
+                            };
+
+                            rowsSheet.Add(row);
+
+                            if (rowsSheet.Count >= _maxSheetsToProcess)
+                            {
+                                cmd.CommandText = InsertSheetsQuery(rowsSheet);
+                                cmd.ExecuteNonQuery();
+                            }
+
+                        } while (reader.NextResult());
+                    }
+
+                }
+                catch (Exception)
+                {
+                    // Add error logging
+                    // Error reading the Excel file
+                }
                 cmd.Connection.Close();
             }
         }
@@ -156,8 +182,6 @@ namespace Linealizar
         {
             GC.Collect();
             GC.WaitForPendingFinalizers();
-
-            _package.Dispose();
         }
 
         private string ClearDirectoryPath(string directory, string fileName)
