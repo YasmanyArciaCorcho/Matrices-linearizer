@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Runtime.Remoting.Messaging;
 
@@ -39,116 +40,84 @@ namespace Linealizar
             RowCount = ColCount = dimension;
         }
 
-        public IEnumerable<decimal> Numbers()
+        public void Numbers()
         {
-            using (var stream = File.Open(_inputPath, FileMode.Open, FileAccess.Read)) 
-            {
-                List<string> sheetNames = new List<string>();
-
-
-                using (var reader = ExcelReaderFactory.CreateReader(stream))
-                {
-                    Percent = RowCount * RowCount * reader.ResultsCount;
-
-                    do
-                    {
-                        sheetNames.Add(reader.Name);
-
-                        #region Creation of table 
-
-                        foreach (var percent in CreateDBFile(_fileName, sheetNames, reader))
-                        {
-                            yield return percent;
-                        }
-                        #endregion
-                    } while (reader.NextResult()); 
-                }
-            }
-        }
-
-
-        private IEnumerable<decimal> CreateDBFile(string fileName,IEnumerable<string> fieldsName, IExcelDataReader reader)
-        {
-
-            //File output of this proyect finished in ML.
             if (File.Exists(_fulldirectionOutput))
             {
                 File.Delete(_fulldirectionOutput);
             }
 
-            OleDbConnection con = new OleDbConnection(GetConnection(_directoryOutput));
-
-            OleDbCommand cmd = new OleDbCommand();
-
-            con.Open();
-            decimal count = 0;
-            try
+            using (var stream = File.Open(_inputPath, FileMode.Open, FileAccess.Read))
             {
-                CreateTable(con, cmd, _fileName, fieldsName);
-            }
-            catch (Exception e)
-            {
-                con.Close();
-                throw new Exception(e.Message, e.InnerException);
-            }
 
-            #region Adding values 
+                OleDbCommand cmd = new OleDbCommand();
 
-            for (int j = 2; j <= RowCount + 1; j++)
-            {
-                for (int k = 2; k <= ColCount + 1; k++)
+                cmd.Connection = new OleDbConnection(GetConnection(_directoryOutput));
+
+                cmd.Connection.Open();
+
+                using (var reader = ExcelReaderFactory.CreateReader(stream))
                 {
-                    List<double> toInsert = new List<double>();
-
-                    foreach (var sheet in _package.Workbook.Worksheets)
+                    string createSql = "create table " + _fulldirectionOutput + " (";
+                    do
                     {
-                        if (sheet.Cells[j, k] != null && sheet.Cells[j, k].Text != null)
-                        {
-                            toInsert.Add(double.Parse(sheet.Cells[j, k].Text.ToString()));
-                        }
-                        else
-                        {
-                            toInsert.Add(0);
-                        }
-                        yield return count++;
+                        createSql = createSql + "[" + reader.Name + "]" + " " + "Double " + ",";
                     }
-
-                    if (toInsert.Count > 0)
-                    {
-                        cmd.CommandText = InsertElement(_fileName, toInsert); ;
-                        try
-                        {
-                            cmd.ExecuteNonQuery();
-
-                        }
-                        catch (Exception e)
-                        {
-                            con.Close();
-                            throw new Exception(e.Message, e.InnerException);
-                        }
-                    }
+                    while (reader.NextResult());
+                    createSql = createSql.Substring(0, createSql.Length - 1) + ");";
+                    cmd.ExecuteNonQuery();
                 }
-                #endregion
+
+                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                {
+                    Percent = RowCount * RowCount * reader.ResultsCount;
+                    int writtenSheets = 0;
+                    do
+                    {
+
+                        #region Adding values 
+
+                        for (int j = 2; j <= RowCount + 1; j++)
+                        {
+                            for (int k = 2; k <= ColCount + 1; k++)
+                            {
+                                List<double> toInsert = new List<double>();
+
+                                //foreach (var sheet in _package.Workbook.Worksheets)
+                                //{
+                                //    if (sheet.Cells[j, k] != null && sheet.Cells[j, k].Text != null)
+                                //    {
+                                //        toInsert.Add(double.Parse(sheet.Cells[j, k].Text.ToString()));
+                                //    }
+                                //    else
+                                //    {
+                                //        toInsert.Add(0);
+                                //    }
+                                //}
+
+                                //if (toInsert.Count > 0)
+                                //{
+                                //    cmd.CommandText = InsertElement(_fileName, toInsert); ;
+                                //    try
+                                //    {
+                                //        cmd.ExecuteNonQuery();
+
+                                //    }
+                                //    catch (Exception e)
+                                //    {
+                                //        con.Close();
+                                //        throw new Exception(e.Message, e.InnerException);
+                                //    }
+                                //}
+                            }
+                            #endregion
+                        }
+                        writtenSheets++;
+                    } while (reader.NextResult());
+                }
+
+                cmd.Connection.Close();
             }
-            con.Close();
-        }
-
-        private void CreateTable(OleDbConnection con, OleDbCommand cmd, string fileName, IEnumerable<string> fieldsName)
-        {
-
-            string createSql = "create table " + fileName + " (";
-
-            foreach (var name in fieldsName)
-            {
-                createSql = createSql + "[" + name + "]" + " " + "Double " + ",";
-            }
-            createSql = createSql.Substring(0, createSql.Length - 1) + ");";
-
-            cmd.Connection = con;
-
-            cmd.CommandText = createSql;
-
-            cmd.ExecuteNonQuery();
         }
 
         public string InsertElement(string fileName,
