@@ -17,12 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Work\\retrospectiva\\yasmany\\retrospectiva-project\\LinealizarHojasExel\\packages\\EPPlus.7.5.2\\readme.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:packages\\EPPlus.7.5.2\\readme.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|LinealizarHojasExel||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0B4F2189-37BE-4060-89EA-041243A4578B}|LinealizarHojasExel\\LinealizarHojasExel.csproj|c:\\work\\retrospectiva\\yasmany\\retrospectiva-project\\linealizarhojasexel\\linealizarhojasexel\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|a54ad834-9219-4aa6-b589-607af21c3e26"
     }
   ],
   "DocumentGroupContainers": [
@@ -32,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -87,25 +81,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "LinealizarHojasExel",
-              "DocumentMoniker": "C:\\Work\\retrospectiva\\yasmany\\retrospectiva-project\\LinealizarHojasExel\\LinealizarHojasExel\\LinealizarHojasExel.csproj",
-              "RelativeDocumentMoniker": "LinealizarHojasExel\\LinealizarHojasExel.csproj",
-              "ToolTip": "C:\\Work\\retrospectiva\\yasmany\\retrospectiva-project\\LinealizarHojasExel\\LinealizarHojasExel\\LinealizarHojasExel.csproj",
-              "RelativeToolTip": "LinealizarHojasExel\\LinealizarHojasExel.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-01-14T01:38:17.678Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "ReadExecDoc.cs",
               "DocumentMoniker": "C:\\Work\\retrospectiva\\yasmany\\retrospectiva-project\\LinealizarHojasExel\\Linealizar\\ReadExecDoc.cs",
               "RelativeDocumentMoniker": "Linealizar\\ReadExecDoc.cs",
               "ToolTip": "C:\\Work\\retrospectiva\\yasmany\\retrospectiva-project\\LinealizarHojasExel\\Linealizar\\ReadExecDoc.cs",
               "RelativeToolTip": "Linealizar\\ReadExecDoc.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAiwAcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAiwAIAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-07T02:07:07.748Z",
               "EditorCaption": ""

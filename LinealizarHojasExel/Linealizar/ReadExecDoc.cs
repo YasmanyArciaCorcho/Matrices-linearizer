@@ -14,10 +14,14 @@ namespace Linealizar
 {
     public class ReadExecDoc
     {
-        string _inputPath;
-        string _directoryOutput;
-        string _fulldirectionOutput;
-        string _fileName;
+        private string _inputPath;
+        private string _directoryOutput;
+        private string _fulldirectionOutput;
+        private string _fileName;
+
+        private List<string> _sheetNames;
+        private const int _maxSheetsToProcess = 10;
+        private int _totalSheetsProcessed = 0;
 
         // It seems that so far we have been working with square matrices
         // TODO: We can add support for non square matrices.
@@ -56,63 +60,59 @@ namespace Linealizar
 
                 cmd.Connection.Open();
 
+                _sheetNames = new List<string>();
+                // Create the db shema
                 using (var reader = ExcelReaderFactory.CreateReader(stream))
                 {
                     string createSql = "create table " + _fulldirectionOutput + " (";
                     do
                     {
                         createSql = createSql + "[" + reader.Name + "]" + " " + "Double " + ",";
+
+                        _sheetNames.Add(reader.Name);
                     }
                     while (reader.NextResult());
+                    
                     createSql = createSql.Substring(0, createSql.Length - 1) + ");";
+
+                    cmd.CommandText = createSql;
                     cmd.ExecuteNonQuery();
                 }
 
+                // Insert data on each table
+                // A sheet turns into a column as how the linearizing process defines
                 using (var reader = ExcelReaderFactory.CreateReader(stream))
                 {
                     Percent = RowCount * RowCount * reader.ResultsCount;
-                    int writtenSheets = 0;
+                    List<List<double>> rowsSheet = new List<List<double>>();
+
                     do
                     {
-
-                        #region Adding values 
-
-                        for (int j = 2; j <= RowCount + 1; j++)
+                        List<double> row = new List<double>();
+                        while (reader.Read())
                         {
-                            for (int k = 2; k <= ColCount + 1; k++)
+                            for (int col = 0; col < reader.FieldCount; col++)
                             {
-                                List<double> toInsert = new List<double>();
-
-                                //foreach (var sheet in _package.Workbook.Worksheets)
-                                //{
-                                //    if (sheet.Cells[j, k] != null && sheet.Cells[j, k].Text != null)
-                                //    {
-                                //        toInsert.Add(double.Parse(sheet.Cells[j, k].Text.ToString()));
-                                //    }
-                                //    else
-                                //    {
-                                //        toInsert.Add(0);
-                                //    }
-                                //}
-
-                                //if (toInsert.Count > 0)
-                                //{
-                                //    cmd.CommandText = InsertElement(_fileName, toInsert); ;
-                                //    try
-                                //    {
-                                //        cmd.ExecuteNonQuery();
-
-                                //    }
-                                //    catch (Exception e)
-                                //    {
-                                //        con.Close();
-                                //        throw new Exception(e.Message, e.InnerException);
-                                //    }
-                                //}
+                                object cellValue = reader.GetValue(col);
+                                if (cellValue is double)
+                                {
+                                    row.Add((double)cellValue);
+                                }
+                                else
+                                {
+                                    row.Add(0);
+                                }
                             }
-                            #endregion
+                        };
+
+                        rowsSheet.Add(row);
+
+                        if (rowsSheet.Count >= _maxSheetsToProcess)
+                        {
+                            cmd.CommandText = InsertSheetsQuery(rowsSheet);
+                            cmd.ExecuteNonQuery();
                         }
-                        writtenSheets++;
+
                     } while (reader.NextResult());
                 }
 
@@ -120,17 +120,22 @@ namespace Linealizar
             }
         }
 
-        public string InsertElement(string fileName,
-           List<double> elements)
+        public string InsertSheetsQuery(List<List<double>> SheetsValues)
         {
-            string insertSql = "insert into " + fileName + " values(";
-
-            foreach (var element in elements)
+            string insertSql = "";
+            foreach (var sheetValue in SheetsValues)
             {
-                insertSql = insertSql + "'" + element + "',";
-            }
+                insertSql += "insert into " + _sheetNames[_totalSheetsProcessed] + " values(";
 
-            insertSql = insertSql.Substring(0, insertSql.Length - 1) + ");";
+                foreach (var cellValue in sheetValue)
+                {
+                    insertSql = insertSql + "'" + cellValue + "',";
+                }
+
+                insertSql = insertSql.Substring(0, insertSql.Length - 1) + ");";
+
+                _totalSheetsProcessed++;
+            }
 
             return insertSql;
 
